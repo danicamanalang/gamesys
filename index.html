@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+            <title>Gamesys Technical Assessment</title>
+  			<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+            <link rel="stylesheet" href="styles/main.css">
+        </head>
+    </html>
+    <body>
+    	<header>
+		    <section class="container">
+		        <h1>Leaderboard Test</h1>
+		    </section>
+		</header>
+
+		<section class="container">
+			<div class="row" id="boxes">
+				<div class="column">
+					<div> 1 </div>
+				</div>
+				<div class="column">
+					<div> 2 </div>
+				</div>
+				<div class="column">
+					<div> 3 </div>
+				</div>
+				<div class="column">
+					<div> 4 </div>
+				</div>
+				<div class="column">
+					<div> 5 </div>
+				</div>
+				<div class="column">
+					<div> 6 </div>
+				</div>
+				<div class="column">
+					<div> 7 </div>
+				</div>
+				<div class="column">
+					<div> 8 </div>
+				</div>
+				<div class="column">
+					<div> 9 </div>
+				</div>
+				<div class="column">
+					<div> 10 </div>
+				</div>
+			</div>
+		</section>
+    </body>
+</html>
+
+<script type="text/javascript">
+	$(function() {
+	    $('.column').click(function() {
+	    	$('.column').removeClass("active inactive default")
+	        $(this).addClass("active")
+	        updateClasses()
+	    });
+	});
+
+	document.onkeydown = checkKey
+
+	function checkKey(e) {
+
+	    e = e || window.event;
+
+    	const active = $('.active')
+	    const firstChild = $(active).is(':first-child')
+	    const lastChild = $(active).is(':last-child')
+
+	    if (e.keyCode == '38') {
+	        if (!firstChild) {
+        		$(active).removeClass('active')	
+	        }
+
+	        $(active).prev('div').addClass('active').removeClass('default')
+			updateClasses()
+	    }
+
+	    if (e.keyCode == '40') {
+	    	if (!lastChild) {
+		        $(active).next('div').removeClass('inactive').addClass('active')
+		        $(active).removeClass('active')
+	    	}
+
+			updateClasses()
+	    }
+
+	}
+
+	function updateClasses () {
+		$('.active').prevAll('div').addClass('default')
+		$('.active').nextAll('div').addClass('inactive')
+	}
+</script>
